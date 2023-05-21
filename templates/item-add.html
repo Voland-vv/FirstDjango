@@ -1,0 +1,32 @@
+{% extends 'base.html' %}
+
+{% block style %}
+    <style>
+       select {width: 12em;}
+<!--       .red {color: red;}-->
+<!--       .blue::marker {color: blue;}-->
+<!--       .white::marker {color: whitesmoke;}-->
+    </style>
+{% endblock %}
+
+{% block content %}
+    <h2>Добавление товара</h2>
+    <form action="{% url 'item-create' %}" method="post">
+        {% csrf_token %}
+        <input type="text" name="name" placeholder="Название"> <br>
+        <input type="text" name="brand" placeholder="Брэнд"> <br>
+        <input type="number" name="count" placeholder="Количество"> <br>
+        <textarea name="description" id="" cols="30" rows="10" placeholder="Описание товара"></textarea> <br>
+        <select name="colors" multiple>
+           {% for color in colors %}
+                <option value='{{ color.id }}'>{{ color.name }}</option>
+           {% endfor %}
+<!--           <option value="red">красный</option>-->
+<!--           <option value="green">синий</option>-->
+<!--           <option value="blue">зеленый</option>-->
+        </select><br>
+        <button type="submit">Создать</button>
+    </form>
+    {% load static %}
+    <script src=" {% static 'multiselect-dropdown.js' %}"></script>
+{% endblock %}

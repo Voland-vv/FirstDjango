@@ -1,0 +1,11 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<h2>Список товаров</h2>
+<ol>
+    {% for item in items %}
+<!--        <a href="/item/{{ item.id }}"><li>{{ item.name }}</a></li>-->
+        <a href="{% url 'item-page' item.id %}"><li>{{ item.name }}</a></li>
+    {% endfor %}
+</ol>
+{% endblock %}

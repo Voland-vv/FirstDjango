@@ -1,0 +1,33 @@
+{% extends 'base.html' %}
+{% block style %}
+    <style>
+        .red::marker {color: red;}
+        .blue::marker {color: blue;}
+        .whitesmoke::marker {color: FloralWhite;}
+        .grey::marker {color: grey;}
+        .none::marker {color: beige;}
+    </style>
+{% endblock %}
+{% block content %}
+    <h2>{{ item.name }}</h2>
+    Количество:
+    <!-- решение с помощью оператора IF-->
+    <!--{% if item.count == 0 %}-->
+    <!--    Товара нет на складе <br>-->
+    <!--{% else %}-->
+    <!--    {{ item.count }} <br>-->
+    <!--{% endif%}-->
+
+    <!-- решение с помощью шаблонного фильтра-->
+    {{ item.count|default:'Товара нету'}}
+
+    <p>
+        {{ item.description }}
+    </p>
+    <ul>
+        {% for color in colors %}
+        <li class='{{ color.css_view }}'>{{ color.name }}</li>
+        {% endfor %}
+    </ul>
+    <a href="/items/">Назад к списку</a>
+{% endblock %}
